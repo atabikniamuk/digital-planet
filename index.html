@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050b19">
+
+    <title>DIGITAL PLANET — Explore The Technology Universe</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+    <div class="space-background"></div>
+    <div class="stars stars-one"></div>
+    <div class="stars stars-two"></div>
+    <div class="noise"></div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="#home" class="logo">
+            <span class="logo-symbol">✦</span>
+            DIGITAL <span>PLANET</span>
+        </a>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="#home">Beranda</a>
+            <a href="#explore">Eksplorasi</a>
+            <a href="#mission">Misi</a>
+            <a href="#digital-dna">Digital DNA</a>
+            <a href="#about">Tentang</a>
+        </nav>
+
+        <a href="#explore" class="nav-button">START EXPLORING ↗</a>
+
+        <button class="mobile-menu" id="menuToggle" aria-label="Buka menu">
+            ☰
+        </button>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="status-dot"></span>
+                    EXPO SMK · FUTURE TECHNOLOGY
+                </div>
+
+                <p class="hero-eyebrow">WELCOME TO THE TECHNOLOGY UNIVERSE</p>
+
+                <h1>
+                    DIGITAL
+                    <span>PLANET</span>
+                </h1>
+
+                <h2>JELAJAHI DUNIA TEKNOLOGI</h2>
+
+                <p class="hero-description">
+                    Masuki galaksi teknologi dan temukan dunia kreativitas,
+                    jaringan, server, Artificial Intelligence, serta
+                    masa depan digital.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#explore" class="button button-primary">
+                        EXPLORE GALAXY <span>↗</span>
+                    </a>
+
+                    <a href="#digital-dna" class="button button-outline">
+                        DISCOVER YOUR DNA
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div>
+                        <strong>05</strong>
+                        <span>TECH PLANETS</span>
+                    </div>
+
+                    <div>
+                        <strong>∞</strong>
+                        <span>FUTURE POSSIBILITIES</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-orbit orbit-one"></div>
+                <div class="hero-orbit orbit-two"></div>
+                <div class="hero-orbit orbit-three"></div>
+
+                <div id="hero3D" class="hero-canvas"></div>
+
+                <div class="hero-planet-label label-top">
+                    <span></span> LIVE GALAXY
+                </div>
+
+                <div class="hero-planet-label label-bottom">
+                    SYSTEM ONLINE · 2026
+                </div>
+
+                <div class="hero-coordinate">
+                    07° DIGITAL UNIVERSE<br>
+                    120° FUTURE GALAXY
+                </div>
+            </div>
+
+            <a href="#explore" class="scroll-indicator">
+                <span></span>
+                SCROLL TO EXPLORE
+            </a>
+        </section>
+
+        <!-- EXPLORE -->
+        <section class="section explore-section" id="explore">
+
+            <div class="section-heading">
+                <p class="section-tag">
+                    <span>01</span> EXPLORE THE UNIVERSE
+                </p>
+
+                <h2>
+                    LIMA PLANET
+                    <span>TEKNOLOGI</span>
+                </h2>
+
+                <p>
+                    Setiap planet adalah sebuah dunia teknologi
+                    yang bisa kamu jelajahi dan pelajari.
+                </p>
+            </div>
+
+            <div class="planet-grid">
+
+                <!-- DESAIN -->
+                <article class="planet-card" data-planet-card="desain">
+                    <div class="card-number">01</div>
+
+                    <div class="planet-visual">
+                        <div class="planet-3d" data-planet="desain"></div>
+                    </div>
+
+                    <p class="card-category">CREATIVE UNIVERSE</p>
+                    <h3>PLANET DESAIN</h3>
+
+                    <p class="card-description">
+                        Dunia kreativitas visual, desain grafis,
+                        UI/UX dan komunikasi digital.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span>UI/UX</span>
+                        <span>GRAPHIC</span>
+                        <span>CREATIVE</span>
+                    </div>
+
+                    <button class="card-explore" data-open-planet="desain">
+                        EXPLORE PLANET <span>↗</span>
+                    </button>
+                </article>
+
+                <!-- JARINGAN -->
+                <article class="planet-card" data-planet-card="jaringan">
+                    <div class="card-number">02</div>
+
+                    <div class="planet-visual">
+                        <div class="planet-3d" data-planet="jaringan"></div>
+                    </div>
+
+                    <p class="card-category">CONNECTED WORLD</p>
+                    <h3>PLANET JARINGAN</h3>
+
+                    <p class="card-description">
+                        Pelajari bagaimana perangkat di seluruh dunia
+                        dapat saling terhubung melalui jaringan.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span>NETWORK</span>
+                        <span>ROUTER</span>
+                        <span>WIRELESS</span>
+                    </div>
+
+                    <button class="card-explore" data-open-planet="jaringan">
+                        EXPLORE PLANET <span>↗</span>
+                    </button>
+                </article>
+
+                <!-- SERVER -->
+                <article class="planet-card" data-planet-card="server">
+                    <div class="card-number">03</div>
+
+                    <div class="planet-visual">
+                        <div class="planet-3d" data-planet="server"></div>
+                    </div>
+
+                    <p class="card-category">DIGITAL INFRASTRUCTURE</p>
+                    <h3>PLANET SERVER</h3>
+
+                    <p class="card-description">
+                        Jelajahi dunia server, cloud computing,
+                        database dan sistem digital modern.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span>LINUX</span>
+                        <span>CLOUD</span>
+                        <span>DATABASE</span>
+                    </div>
+
+                    <button class="card-explore" data-open-planet="server">
+                        EXPLORE PLANET <span>↗</span>
+                    </button>
+                </article>
+
+                <!-- AI -->
+                <article class="planet-card" data-planet-card="ai">
+                    <div class="card-number">04</div>
+
+                    <div class="planet-visual">
+                        <div class="planet-3d" data-planet="ai"></div>
+                    </div>
+
+                    <p class="card-category">INTELLIGENT FUTURE</p>
+                    <h3>PLANET AI</h3>
+
+                    <p class="card-description">
+                        Temukan teknologi kecerdasan buatan
+                        yang membentuk masa depan manusia.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span>AI</span>
+                        <span>PYTHON</span>
+                        <span>DATA</span>
+                    </div>
+
+                    <button class="card-explore" data-open-planet="ai">
+                        EXPLORE PLANET <span>↗</span>
+                    </button>
+                </article>
+
+                <!-- MASA DEPAN -->
+                <article class="planet-card" data-planet-card="future">
+                    <div class="card-number">05</div>
+
+                    <div class="planet-visual">
+                        <div class="planet-3d" data-planet="future"></div>
+                    </div>
+
+                    <p class="card-category">NEXT GENERATION</p>
+                    <h3>PLANET MASA DEPAN</h3>
+
+                    <p class="card-description">
+                        Bersiap menghadapi teknologi baru,
+                        karier digital dan dunia masa depan.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span>CAREER</span>
+                        <span>FUTURE</span>
+                        <span>INNOVATION</span>
+                    </div>
+
+                    <button class="card-explore" data-open-planet="future">
+                        EXPLORE PLANET <span>↗</span>
+                    </button>
+                </article>
+
+            </div>
+
+            <!-- PLANET DETAIL -->
+            <div class="planet-detail" id="planetDetail" hidden>
+                <button class="detail-close" id="closeDetail" aria-label="Tutup">
+                    ✕
+                </button>
+
+                <div class="detail-visual">
+                    <div class="detail-planet-orbit"></div>
+                    <div id="detailPlanet3D"></div>
+                </div>
+
+                <div class="detail-content">
+                    <p class="section-tag">PLANET EXPLORATION</p>
+                    <p class="detail-number" id="detailNumber">PLANET 01</p>
+                    <h2 id="detailTitle">PLANET DESAIN</h2>
+                    <p id="detailDescription"></p>
+
+                    <h3>TECHNOLOGY DISCOVERY</h3>
+                    <div class="detail-topics" id="detailTopics"></div>
+
+                    <p class="detail-learning" id="detailLearning"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MISSION -->
+        <section class="mission-section" id="mission">
+            <div class="mission-nebula"></div>
+
+            <div class="section-heading center">
+                <p class="section-tag">
+                    <span>02</span> YOUR MISSION
+                </p>
+
+                <h2>
+                    PILIH JALANMU,
+                    <span>CIPTAKAN MASA DEPANMU</span>
+                </h2>
+
+                <p>
+                    Teknologi bukan hanya untuk digunakan.
+                    Teknologi juga bisa kamu ciptakan.
+                </p>
+            </div>
+
+            <div class="mission-grid">
+                <article class="mission-card">
+                    <span class="mission-number">01</span>
+                    <div class="mission-icon">⌕</div>
+                    <h3>EXPLORE</h3>
+                    <p>Jelajahi berbagai bidang teknologi.</p>
+                </article>
+
+                <article class="mission-card">
+                    <span class="mission-number">02</span>
+                    <div class="mission-icon">✧</div>
+                    <h3>DISCOVER</h3>
+                    <p>Temukan potensi digital dalam dirimu.</p>
+                </article>
+
+                <article class="mission-card">
+                    <span class="mission-number">03</span>
+                    <div class="mission-icon">⌘</div>
+                    <h3>CREATE</h3>
+                    <p>Bangun inovasi untuk masa depan.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- DIGITAL DNA -->
+        <section class="section dna-section" id="digital-dna">
+
+            <div class="section-heading">
+                <p class="section-tag">
+                    <span>03</span> PERSONAL TECHNOLOGY ANALYSIS
+                </p>
+
+                <h2>
+                    DIGITAL DNA
+                    <span>ANALYSIS</span>
+                </h2>
+
+                <p>
+                    Jawab lima pertanyaan dan temukan planet
+                    teknologi yang paling cocok untukmu.
+                </p>
+            </div>
+
+            <div class="quiz-container" id="quizContainer">
+
+                <div class="quiz-top">
+                    <div>
+                        <span class="quiz-label">DIGITAL DNA SCANNER</span>
+                        <h3 id="questionNumber">QUESTION 01 / 05</h3>
+                    </div>
+
+                    <span class="quiz-percent" id="progressText">20%</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <h2 class="question-text" id="question">
+                    Kamu paling tertarik dengan kegiatan apa?
+                </h2>
+
+                <div class="answer-grid" id="answers"></div>
+
+                <div class="quiz-footer">
+                    <button class="button button-outline" id="prevBtn" disabled>
+                        ← BACK
+                    </button>
+
+                    <button class="button button-primary" id="nextBtn" disabled>
+                        NEXT →
+                    </button>
+                </div>
+            </div>
+
+            <!-- ANALYSIS -->
+            <div class="analysis-screen hidden" id="analysisScreen">
+                <div class="scanner-circle">
+                    <div class="scanner-inner">DNA</div>
+                    <div class="scanner-line"></div>
+                </div>
+
+                <h2>ANALYZING YOUR <span>DIGITAL DNA...</span></h2>
+                <p>Memindai minat dan potensi teknologi digitalmu.</p>
+
+                <div class="analysis-progress">
+                    <div id="analysisProgressFill"></div>
+                </div>
+
+                <span id="analysisPercent">0%</span>
+            </div>
+
+            <!-- RESULT -->
+            <div class="result-screen hidden" id="resultScreen">
+                <div class="result-orb">
+                    <div id="resultPlanet3D"></div>
+                </div>
+
+                <div class="result-content">
+                    <p class="result-small">ANALYSIS COMPLETE</p>
+                    <h2>YOUR DIGITAL <span>DNA</span></h2>
+
+                    <div class="result-match">
+                        <p>DIGITAL PLANET MATCH</p>
+                        <h3 id="resultPlanet">PLANET AI</h3>
+
+                        <div class="match-level">
+                            <span>INTEREST MATCH</span>
+                            <strong id="matchPercent">100%</strong>
+                        </div>
+                    </div>
+
+                    <div class="recommended-path">
+                        <p>RECOMMENDED TECHNOLOGY PATH</p>
+                        <div id="recommendedTech"></div>
+                    </div>
+
+                    <p class="result-description" id="resultDescription"></p>
+
+                    <div class="result-buttons">
+                        <button class="button button-primary" id="explorePlanetBtn">
+                            EXPLORE THIS PLANET ↗
+                        </button>
+
+                        <button class="button button-outline" id="restartBtn">
+                            RESTART MISSION
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ABOUT -->
+        <section class="about-section" id="about">
+            <div class="about-grid">
+
+                <div class="about-content">
+                    <p class="section-tag">
+                        <span>04</span> PROJECT EXPO SMK
+                    </p>
+
+                    <h2>
+                        TECHNOLOGY +
+                        <span>CREATIVITY</span>
+                    </h2>
+
+                    <p>
+                        DIGITAL PLANET adalah proyek kolaborasi siswa SMK
+                        untuk memperkenalkan dunia teknologi melalui
+                        pengalaman eksplorasi galaksi interaktif.
+                    </p>
+
+                    <p>
+                        Setiap planet menggambarkan bidang teknologi
+                        yang dapat dipelajari, dikembangkan, dan menjadi
+                        peluang untuk masa depan.
+                    </p>
+                </div>
+
+                <div class="collaboration-box">
+                    <p class="collaboration-label">OUR COLLABORATION</p>
+                    <h3>CREATIVE MINDS.<br>TECHNOLOGICAL FUTURE.</h3>
+
+                    <div class="team-item">
+                        <div class="team-icon dkv">DKV</div>
+                        <div>
+                            <strong>VISUAL DESIGN</strong>
+                            <p>UI/UX · Illustration · Identity</p>
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-icon TKJ">TKJ</div>
+                        <div>
+                            <strong>WEB DEVELOPMENT</strong>
+                            <p>HTML · CSS · JavaScript · Technology</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-cta">
+            <p>MISSION READY?</p>
+
+            <h2>
+                READY TO EXPLORE
+                <span>THE FUTURE?</span>
+            </h2>
+
+            <h3>JELAJAHI GALAKSIMU HARI INI.</h3>
+
+            <a href="#home" class="button button-primary">
+                START YOUR JOURNEY ↑
+            </a>
+        </div>
+
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>DIGITAL <span>PLANET</span></h2>
+                <p>Jelajahi Teknologi,<br>Temukan Masa Depanmu.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>NAVIGATION</h4>
+                <a href="#home">Beranda</a>
+                <a href="#explore">Eksplorasi</a>
+                <a href="#mission">Misi</a>
+                <a href="#digital-dna">Digital DNA</a>
+                <a href="#about">Tentang</a>
+            </div>
+
+            <div class="footer-project">
+                <h4>PROJECT EXPO SMK</h4>
+                <p>DKV — Visual Design & UI/UX</p>
+                <p>TKJ — Web Development & Technology</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 DIGITAL PLANET · ALL RIGHTS RESERVED</p>
+            <span><i></i> ALL SYSTEMS ONLINE</span>
+        </div>
+    </footer>
+
+    <!-- THREE.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
