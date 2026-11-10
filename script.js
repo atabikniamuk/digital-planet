@@ -181,6 +181,30 @@ sun: {
 
     const activeScenes = [];
 
+    // Pantau scene yang benar-benar berada di dekat viewport.
+    // Scene di luar layar tidak perlu dirender setiap frame.
+    const sceneVisibilityObserver = "IntersectionObserver" in window
+        ? new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const item = entry.target.__planetScene;
+                if (item) item.visible = entry.isIntersecting;
+            });
+        }, { rootMargin: "150px 0px", threshold: 0.01 })
+        : null;
+
+    function registerScene(item) {
+        item.visible = true;
+        activeScenes.push(item);
+
+        if (sceneVisibilityObserver && item.renderer?.domElement) {
+            item.visible = false;
+            item.renderer.domElement.__planetScene = item;
+            sceneVisibilityObserver.observe(item.renderer.domElement);
+        }
+
+        return item;
+    }
+
     const random = (min, max) =>
         Math.random() * (max - min) + min;
 
@@ -448,7 +472,7 @@ sun: {
         });
 
         renderer.setPixelRatio(
-            Math.min(window.devicePixelRatio || 1, 1.5)
+            Math.min(window.devicePixelRatio || 1, 1.25)
         );
 
         renderer.setSize(
@@ -825,7 +849,7 @@ sun: {
 
         heroResize.observe(heroContainer);
 
-        activeScenes.push({
+        registerScene({
             scene,
             camera,
             renderer,
@@ -844,21 +868,20 @@ sun: {
        9. PLANET CARDS
     ================================================= */
 
-    document.querySelectorAll(".planet-3d").forEach(container => {
+    function createPlanetCardScene(container) {
         const key = container.dataset.planet;
+        if (!planets[key] || container.dataset.sceneCreated === "true") return;
+        container.dataset.sceneCreated = "true";
 
-        if (!planets[key]) return;
-
+        const width = Math.max(container.clientWidth, 1);
+        const height = Math.max(container.clientHeight, 1);
         const scene = new THREE.Scene();
-
         const camera = new THREE.PerspectiveCamera(
             35,
-            Math.max(container.clientWidth, 1) /
-            Math.max(container.clientHeight, 1),
+            width / height,
             0.1,
             100
         );
-
         camera.position.z = 3.2;
 
         const renderer = new THREE.WebGLRenderer({
@@ -866,44 +889,26 @@ sun: {
             antialias: true,
             powerPreference: "low-power"
         });
-
-        renderer.setPixelRatio(
-            Math.min(window.devicePixelRatio || 1, 1.5)
-        );
-
-        renderer.setSize(
-            container.clientWidth,
-            container.clientHeight
-        );
-
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
+        renderer.setSize(width, height);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
-
         container.replaceChildren(renderer.domElement);
 
         addLighting(scene, new THREE.Color(planets[key].color));
-
-        const planet = createSphere(
-            planets[key],
-            0.82,
-            key
-        );
-
+        const planet = createSphere(planets[key], 0.82, key);
         scene.add(planet);
 
         const resizeObserver = new ResizeObserver(() => {
             const w = container.clientWidth;
             const h = container.clientHeight;
-
             if (!w || !h) return;
-
             camera.aspect = w / h;
             camera.updateProjectionMatrix();
             renderer.setSize(w, h);
         });
-
         resizeObserver.observe(container);
 
-        activeScenes.push({
+        registerScene({
             scene,
             camera,
             renderer,
@@ -912,7 +917,28 @@ sun: {
             resizeObserver,
             disposed: false
         });
-    });
+    }
+
+    const planetCardContainers = document.querySelectorAll(".planet-3d");
+
+    if ("IntersectionObserver" in window) {
+        const planetCardLoader = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                observer.unobserve(entry.target);
+                createPlanetCardScene(entry.target);
+            });
+        }, { rootMargin: "300px 0px", threshold: 0.01 });
+
+        planetCardContainers.forEach(container => {
+            if (planets[container.dataset.planet]) {
+                planetCardLoader.observe(container);
+            }
+        });
+    } else {
+        // Fallback untuk browser lama: buat semua kartu seperti perilaku sebelumnya.
+        planetCardContainers.forEach(createPlanetCardScene);
+    }
 
     /* =================================================
        10. PLANET DETAIL PANEL
@@ -1020,7 +1046,7 @@ sun: {
         });
 
         renderer.setPixelRatio(
-            Math.min(window.devicePixelRatio || 1, 1.5)
+            Math.min(window.devicePixelRatio || 1, 1.25)
         );
 
         renderer.setSize(
@@ -1101,7 +1127,7 @@ sun: {
             detail: true
         };
 
-        activeScenes.push(item);
+        registerScene(item);
 
         return item;
     }
@@ -1114,6 +1140,11 @@ sun: {
         if (!item || item.disposed) return;
 
         item.disposed = true;
+
+        if (sceneVisibilityObserver && item.renderer?.domElement) {
+            sceneVisibilityObserver.unobserve(item.renderer.domElement);
+            delete item.renderer.domElement.__planetScene;
+        }
 
         if (item.resizeObserver) {
             item.resizeObserver.disconnect();
@@ -1550,7 +1581,7 @@ sun: {
         const elapsed = clock.elapsedTime;
 
         activeScenes.forEach(item => {
-            if (item.disposed) return;
+            if (item.disposed || !item.visible || document.hidden) return;
 
             if (item.hero) {
                 // SUN ROTATION
