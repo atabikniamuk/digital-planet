@@ -288,7 +288,7 @@ sun: {
        5. CREATE PLANET SPHERE
     ================================================= */
 
-    function createSphere(data, radius, key) {
+    function createSphere(data, radius, key, textureOverride = null) {
         const group = new THREE.Group();
 
         const geometry = new THREE.SphereGeometry(
@@ -298,7 +298,7 @@ sun: {
         );
 
         const material = new THREE.MeshStandardMaterial({
-            map: createPlanetTexture(data),
+            map: textureOverride || createPlanetTexture(data),
             roughness: 0.85,
             metalness: 0.03
         });
@@ -582,23 +582,17 @@ sun: {
         // MAIN SUN
         // =============================================
 
-      const mainPlanet = createSphere(
-    planets.sun,
-    0.62,
-    "sun"
-);
+        const mainPlanet = createSphere(
+            planets.sun,
+            0.62,
+            "sun",
+            createSunTexture()
+        );
 
         const sunSphere = mainPlanet.userData.sphere;
-
-        // Replace original planet texture
-        if (sunSphere.material.map) {
-            sunSphere.material.map.dispose();
-        }
-
         sunSphere.material.dispose();
-
         sunSphere.material = new THREE.MeshBasicMaterial({
-            map: createSunTexture(),
+            map: sunSphere.material.map,
             color: 0xffffff
         });
 
@@ -1141,6 +1135,9 @@ sun: {
 
         item.disposed = true;
 
+        const sceneIndex = activeScenes.indexOf(item);
+        if (sceneIndex !== -1) activeScenes.splice(sceneIndex, 1);
+
         if (sceneVisibilityObserver && item.renderer?.domElement) {
             sceneVisibilityObserver.unobserve(item.renderer.domElement);
             delete item.renderer.domElement.__planetScene;
@@ -1573,9 +1570,10 @@ sun: {
     ================================================= */
 
     const clock = new THREE.Clock();
+    let animationFrameId = null;
 
     function animate() {
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
 
         const delta = Math.min(clock.getDelta(), 0.05);
         const elapsed = clock.elapsedTime;
@@ -1662,6 +1660,22 @@ sun: {
             );
         });
     }
+
+    function stopAnimation() {
+        if (animationFrameId !== null) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
+    }
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stopAnimation();
+        } else if (animationFrameId === null) {
+            clock.getDelta();
+            animate();
+        }
+    });
 
     animate();
 
