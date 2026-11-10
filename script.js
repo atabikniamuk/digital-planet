@@ -1685,7 +1685,7 @@ sun: {
     ================================================= */
 
     window.addEventListener("pagehide", () => {
-        activeScenes.forEach(item => {
+        [...activeScenes].forEach(item => {
             disposeScene(item);
         });
     });
